@@ -1,0 +1,66 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+}
+
+@keyframes move-twink-back {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: -10000px 5000px;
+  }
+}
+
+@keyframes move-clouds-back {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 10000px 0;
+  }
+}
+
+.stars,
+.twinkling,
+.clouds {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  display: block;
+  z-index: -1;
+}
+
+.stars {
+  z-index: -4;
+}
+
+.twinkling {
+  z-index: -3;
+  animation: move-twink-back 200s linear infinite;
+}
+
+.clouds {
+  z-index: -2;
+  opacity: .57;
+  animation: move-clouds-back 300s linear infinite;
+}
+
+.custom-bg {
+  background: linear-gradient(90deg, #333333 0%, rgb(19, 19, 19) 100%);
+  color: white;
+}
+
+.custom-div {
+  background: linear-gradient(0deg, #333333 0%, rgba(19, 19, 19, 0.83) 10%);
+  border: 4px, solid, rgb(255, 176, 4);
+  border-radius: 20px;
+}

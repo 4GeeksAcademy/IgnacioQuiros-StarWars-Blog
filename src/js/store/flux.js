@@ -1,42 +1,66 @@
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
-			demo: [
-				{
-					title: "FIRST",
-					background: "white",
-					initial: "white"
-				},
-				{
-					title: "SECOND",
-					background: "white",
-					initial: "white"
-				}
-			]
+			myUrlApi: "https://www.swapi.tech/api/",
+			types: {
+				people: "people/",
+				planets: "planets/",
+				starships: "starships/"
+			},
+			myPeople: [],
+			myPlanets: [],
+			myStarships: [],
+			favorites: [],
+			loading: true,
+			placeholder: "https://starwars-visualguide.com/assets/img/big-placeholder.jpg"
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
-			},
-			changeColor: (index, color) => {
-				//get the store
+			getApi: () => {
 				const store = getStore();
+				setStore({ loading: true });
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				const demo = store.demo.map((elm, i) => {
-					if (i === index) elm.background = color;
-					return elm;
-				});
+				fetch(store.myUrlApi + store.types.people)
+					.then(res => res.json())
+					.then(data => {
+						setStore({ myPeople: data.results });
+					})
+					.catch(err => {
+						console.error("Error fetching people:", err);
+					});
 
-				//reset the global store
-				setStore({ demo: demo });
+				fetch(store.myUrlApi + store.types.planets)
+					.then(res => res.json())
+					.then(data => {
+						setStore({ myPlanets: data.results });
+					})
+					.catch(err => {
+						console.error("Error fetching planets:", err);
+					});
+
+				fetch(store.myUrlApi + store.types.starships)
+					.then(res => res.json())
+					.then(data => {
+						setStore({ myStarships: data.results });
+					})
+					.catch(err => {
+						console.error("Error fetching starships:", err);
+					})
+					.finally(() => {
+						setStore({ loading: false });
+					});
+			},
+			toggleFavorite: (item) => {
+				const store = getStore();
+				const index = store.favorites.findIndex(fav => fav.id === item.id && fav.type === item.type);
+
+				if (index === -1) {
+					// Add to favorites
+					setStore({ favorites: [...store.favorites, item] });
+				} else {
+					// Remove from favorites
+					const newFavorites = store.favorites.filter(fav => !(fav.id === item.id && fav.type === item.type));
+					setStore({ favorites: newFavorites });
+				}
 			}
 		}
 	};

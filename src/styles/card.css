@@ -1,0 +1,115 @@
+.cardsDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.cards-container {
+    border: 2px solid rgba(255, 255, 255, 0.425);
+    display: flex;
+    overflow-x: auto;
+    width: 96%;
+    padding: 20px 0;
+    background-color: #272727be;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cards-container::-webkit-scrollbar {
+    height: 18px;
+    border-radius: 10px;
+    border: 20px solid rgba(255, 182, 25, 0.521);
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 40px;
+}
+
+.card {
+    height: 30rem;
+    width: 14rem;
+    flex: 0 0 auto;
+    margin-right: 10px;
+    margin-left: 10px;
+    background-color: #07070733;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 8px;
+    border-width: 1.8px;
+    border-color: #ffffff7e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.07);
+}
+
+.card-img-top {
+    width: 100%;
+    height: auto;
+    object-fit: cover; /* Asegúrate de que la imagen cubra el contenedor correctamente */
+    border-radius: 10px 10px 0 0;
+    border: 2px solid #ffffff7e;
+}
+
+.card-body {
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end; /* Asegura que el contenido esté alineado al fondo */
+    align-items: center; /* Centra el contenido horizontalmente */
+    margin-bottom: 40%;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: 0.8rem;
+    margin-top: 1.8rem;
+}
+
+.buttonsContainer {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+    margin-top: 1.5rem;
+    position: absolute;
+    bottom: 20px;
+    white-space: nowrap;
+    display: flex;
+    justify-content: center;
+}
+
+@media (max-width: 576px) {
+    .card {
+        height: 21rem;
+        width: 9rem;
+        padding: 0px;
+    }
+
+    .card-img-top {
+        width: 100%;
+        height: auto;
+    }
+
+    .card-title {
+        font-size: 0.9rem;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .buttonsContainer {
+        padding: 0.2rem 0.2rem;
+        margin-top: 1rem;
+        bottom: 14px;
+        left: 12px;
+    }
+}
